@@ -1,0 +1,347 @@
+{
+  "projectName": "MonetizaciónFacebook",
+  "syncedAt": "2026-11-17T06:08:39.816Z",
+  "goalMxnMonthly": 50000,
+  "currentStatus": {
+    "activePhase": "Preparación de Infraestructura & Cimientos",
+    "workingOn": "Despliegue de Dashboard PWA + Auth0 y preparación para Átomo 0.1",
+    "nextStep": "Ejecutar Átomo 0.1: Investigación profunda de RPM real y casos >= $50K MXN/mes",
+    "policyHealth": "Limpio (Pre-lanzamiento)",
+    "activeTrend": "La Mansión VIP 2 (Tendencia piloto definida)"
+  },
+  "kpis": {
+    "monthlyRevenueMxn": 0,
+    "monthlyViews": 0,
+    "avgRpmMxn": 0,
+    "followers": 0,
+    "postsPublished": 0,
+    "retention3sAvgPct": 0,
+    "policyStrikes": 0,
+    "dataSource": "Pre-lanzamiento (pendiente conexión Meta Insights / CSV en Átomo 3.1)"
+  },
+  "recentUpdates": [
+    {
+      "date": "2026-11-17",
+      "title": "Dashboard PWA + Auth0 + Repositorio GitHub/Vercel",
+      "summary": "Creación del panel web responsive con tema claro/oscuro, PWA móvil y sincronización dinámica con archivos locales.",
+      "type": "infra"
+    },
+    {
+      "date": "2026-11-16",
+      "title": "Blindaje de Skill deep-research",
+      "summary": "Se eliminaron dependencias rotas (firecrawl/exa) y se añadieron Cadena de Custodia del Dato, filtro anti-vendehúmos y búsqueda de contra-evidencia.",
+      "type": "skill"
+    },
+    {
+      "date": "2026-11-16",
+      "title": "Contexto Maestro y Plan Atómico Auditado",
+      "summary": "Se documentó la visión completa (50K MXN/mes, trend-jacking 360°) y el plan de 7 fases / 14 átomos auditado con analisis-critico.",
+      "type": "plan"
+    }
+  ],
+  "plan": {
+    "phases": [
+      {
+        "id": "fase-0",
+        "code": "Fase 0",
+        "title": "Cimientos de Inteligencia y Políticas (Cero Ceguera)",
+        "atoms": [
+          {
+            "id": "atomo-0.1",
+            "code": "Átomo 0.1",
+            "title": "Investigación Profunda de Ingeniería Inversa ($50K+ MXN/mes)",
+            "status": "pending",
+            "action": "Ejecutar `deep-research` (con los 8 pilares de `AGENTS.md §0.1`) sobre creadores y páginas de entretenimiento/noticias virales en México y LATAM que ya generan $\\ge \\$50,000\\text{ MXN/mes}$ en Facebook.",
+            "deliverable": "`02-investigacion/profunda/2026-11-16_ingenieria-inversa-50k-mxn-facebook.md` + `02-investigacion/competencia/2026-11-16_benchmark-paginas-tendencias-latam.md`.",
+            "criteria": "**PASA** si todas las cifras citan fuente verificable (documentación oficial Meta, creadores auditables, reportes) y se incluye tabla de sensibilidad Vistas × RPM = MXN."
+          },
+          {
+            "id": "atomo-0.2",
+            "code": "Átomo 0.2",
+            "title": "Biblia Operativa de Políticas Meta y Originalidad (Anti-Ban)",
+            "status": "pending",
+            "action": "Recopilar y traducir a reglas binarias las **Políticas de Monetización para Socios**, **Políticas de Monetización de Contenido**, reglas de **Contenido No Original / Reutilizado**, **Engagement Bait** y **Copyright (Rights Manager)** de Meta.",
+            "deliverable": "`00-sistema-y-reglas/politicas-meta/2026-11-16_reglas-oro-originalidad-y-monetizacion.md` + `00-sistema-y-reglas/sops-y-checklists/2026-11-16_checklist-pre-publicacion-anti-strike.md`.",
+            "criteria": "**PASA** si existe un checklist de 10 puntos binarios (`SÍ/NO`) que toda pieza de terceros debe aprobar antes de publicarse (transformación visual, voz/narración propia, contexto añadido, música libre de copyright, cero marcas de agua de TikTok/IG/YouTube)."
+          },
+          {
+            "id": "atomo-0.3",
+            "code": "Átomo 0.3",
+            "title": "Decodificación del Algoritmo Actual de Facebook",
+            "status": "pending",
+            "action": "Investigar señales reales de distribución orgánica de Facebook (retención en los primeros 3 segundos, tasa de finalización, re-visualizaciones, compartidos por DM/muro, comentarios largos vs. *clickbait* penalizado, distribución en feed *For You* / *Suggested for You*).",
+            "deliverable": "`02-investigacion/tendencias/2026-11-16_mecanica-algoritmo-facebook.md`.",
+            "criteria": "**PASA** si separa hechos documentados por Meta/ingeniería de mitos sin respaldo, y define métricas objetivo por formato (Reels, Video largo, Meme/Imagen)."
+          }
+        ]
+      },
+      {
+        "id": "fase-1",
+        "code": "Fase 1",
+        "title": "Ecosistema de Skills, \"Ojos\" y Herramientas",
+        "atoms": [
+          {
+            "id": "atomo-1.1",
+            "code": "Átomo 1.1",
+            "title": "Auditoría de Capacidades Actuales vs. Faltantes",
+            "status": "pending",
+            "action": "",
+            "deliverable": "Este mapa verificado + verificación de dependencias locales (`python`, `node`, `ffmpeg`, `yt-dlp`).",
+            "criteria": "**PASA** si se comprueba en terminal qué binarios (`ffmpeg`, `yt-dlp`, `python`) están instalados o se instalan limpiamente."
+          },
+          {
+            "id": "atomo-1.2",
+            "code": "Átomo 1.2",
+            "title": "Instalación de Binarios Locales de Media (`yt-dlp` + `ffmpeg`)",
+            "status": "pending",
+            "action": "Instalar o verificar `yt-dlp` (descarga limpia de clips de YouTube/TikTok/X/Facebook sin marca de agua cuando aplique) y `ffmpeg` (corte automático, reencuadre 9:16 / 4:5 / 16:9, *mirror/zoom* dinámico, inserción de subtítulos y capas visuales transformativas).",
+            "deliverable": "Scripts en `06-automatizaciones/scripts/` (`descargar_insumo.ps1` / `.py` y `transformar_clip.py`).",
+            "criteria": "**PASA** si una prueba real descarga un clip público de prueba y genera una versión reencuadrada con marca/marco propio del proyecto sin errores."
+          },
+          {
+            "id": "atomo-1.3",
+            "code": "Átomo 1.3",
+            "title": "Creación de Skill `trend-radar` (\"Ojos en Redes Sociales\")",
+            "status": "pending",
+            "action": "Crear `.agents/skills/trend-radar/SKILL.md` combinando `browser` (para inspeccionar en vivo TikTok, X/Twitter, YouTube y Facebook público), `search_web` y scripts de monitoreo (Google Trends / RSS de noticias de entretenimiento en México).",
+            "deliverable": "`.agents/skills/trend-radar/SKILL.md` + `06-automatizaciones/scripts/radar_tendencias.py`.",
+            "criteria": "**PASA** si al ejecutar el flujo sobre una tendencia real (ej. *\"La Mansión VIP 2\"*) devuelve en <5 min: los 5 sucesos más comentados de las últimas 24h, ángulos virales activos y el nivel de saturación/vida útil de la tendencia."
+          },
+          {
+            "id": "atomo-1.4",
+            "code": "Átomo 1.4",
+            "title": "Creación de Skill `viral-content-factory`",
+            "status": "pending",
+            "action": "Crear `.agents/skills/viral-content-factory/SKILL.md` especializada en los 5 ángulos del proyecto:",
+            "deliverable": "`.agents/skills/viral-content-factory/SKILL.md` + plantillas de hooks y prompts en `04-contenido/recursos-compartidos/prompts/`.",
+            "criteria": "**PASA** si genera una matriz completa de 5 piezas distintas para un mismo suceso en <3 minutos cumpliendo el checklist anti-strike."
+          },
+          {
+            "id": "atomo-1.5",
+            "code": "Átomo 1.5",
+            "title": "Creación de Skill `meta-insights-analyst` y `politicas-meta-guard`",
+            "status": "pending",
+            "action": "Crear dos skills ligeras y enfocadas en `.agents/skills/`:",
+            "deliverable": "`.agents/skills/politicas-meta-guard/SKILL.md` y `.agents/skills/meta-insights-analyst/SKILL.md`.",
+            "criteria": "**PASA** si `inventario.ps1` lista todas las skills nuevas sin errores de formato."
+          }
+        ]
+      },
+      {
+        "id": "fase-2",
+        "code": "Fase 2",
+        "title": "Configuración Estratégica del Activo en Facebook",
+        "atoms": [
+          {
+            "id": "atomo-2.1",
+            "code": "Átomo 2.1",
+            "title": "Arquitectura de Marca Adaptable (Identidad que no te encierra)",
+            "status": "pending",
+            "action": "Definir nombre, @handle, foto de perfil, portada, biografía y categoría de la página (ej. *Medio de comunicación / Entretenimiento / Creador digital*) diseñada para **pivotar de tendencia en tendencia** sin parecer spam ni perder seguidores al cambiar de tema (ej. de *La Mansión VIP 2* al siguiente fenómeno viral).",
+            "deliverable": "`01-estrategia-y-nichos/activos-y-paginas/2026-11-16_ficha-pagina-principal.md`.",
+            "criteria": "**PASA** si el branding definido es 100% agnóstico a un solo reality/personaje, transmite autoridad de \"medio/radar de cultura pop y humor\" y tiene definidos colores/tipografías para memes y noticias."
+          },
+          {
+            "id": "atomo-2.2",
+            "code": "Átomo 2.2",
+            "title": "Creación y Blindaje Técnico de la Página y Meta Business Portfolio",
+            "status": "pending",
+            "action": "Guía paso a paso (ejecutada por el usuario con verificación) para:",
+            "deliverable": "Checklist completado en `01-estrategia-y-nichos/activos-y-paginas/2026-11-16_ficha-pagina-principal.md`.",
+            "criteria": "**PASA** si la página muestra estado \"Sin infracciones\" y \"Recomendable\" en Meta Business Suite."
+          }
+        ]
+      },
+      {
+        "id": "fase-3",
+        "code": "Fase 3",
+        "title": "Conexión a Métricas Reales (Feedback Loop)",
+        "atoms": [
+          {
+            "id": "atomo-3.1",
+            "code": "Átomo 3.1",
+            "title": "Conector Oficial de Métricas (Meta Graph API + Respaldo CSV)",
+            "status": "pending",
+            "action": "Implementar dos vías complementarias para que nunca falle la lectura de datos:",
+            "deliverable": "`06-automatizaciones/scripts/fb_insights_sync.py` + `06-automatizaciones/scripts/parse_business_suite_csv.py` + guía de tokens en `.env.example` (sin guardar secretos en Git).",
+            "criteria": "**PASA** si el script procesa un lote real de publicaciones (vía API o CSV de prueba) y genera un reporte en `03-analisis-y-estadisticas/informes/`."
+          },
+          {
+            "id": "atomo-3.2",
+            "code": "Átomo 3.2",
+            "title": "Sistema de Aprendizaje Post-a-Post (\"Error → Ajuste → Mejora\")",
+            "status": "pending",
+            "action": "Definir el protocolo automático después de cada publicación o bloque de 24h:",
+            "deliverable": "`00-sistema-y-reglas/sops-y-checklists/2026-11-16_sop-aprendizaje-post-publicacion.md`.",
+            "criteria": "**PASA** si el flujo está documentado con umbrales numéricos claros de qué se considera \"post ganador\" vs \"post fallido\"."
+          }
+        ]
+      },
+      {
+        "id": "fase-4",
+        "code": "Fase 4",
+        "title": "Fábrica Automatizada de Contenido (*Trend-Jacking 360°*)",
+        "atoms": [
+          {
+            "id": "atomo-4.1",
+            "code": "Átomo 4.1",
+            "title": "Flujo Diario de Monitoreo (\"Ojos\" en Vivo)",
+            "status": "pending",
+            "action": "Configurar una rutina (manual asistida o con `/schedule` / `automation`) que 2–3 veces al día escanee la tendencia activa (ej. clips recientes de *La Mansión VIP 2* en TikTok/X/YouTube/FB, comentarios virales, qué están publicando las páginas competidoras) y deposite un **Brief de Oportunidad** en `02-investigacion/tendencias/`.",
+            "deliverable": "`06-automatizaciones/scripts/brief_diario_tendencia.py` + plantilla de brief.",
+            "criteria": "**PASA** si produce un brief accionable con mínimo 3 sucesos frescos del día listos para producir."
+          },
+          {
+            "id": "atomo-4.2",
+            "code": "Átomo 4.2",
+            "title": "Pipeline de Producción Segura (Descarga + Transformación + Empaquetado)",
+            "status": "pending",
+            "action": "Conectar `descargar_insumo` → `politicas-meta-guard` → `viral-content-factory` → `transformar_clip.py` / `image-generator` / `invideo` para generar carpetas completas en `04-contenido/produccion/YYYY-MM-DD_<pagina>_<slug>/` con:",
+            "deliverable": "`06-automatizaciones/scripts/empaquetar_pieza.ps1` + primera carpeta piloto de producción completa.",
+            "criteria": "**PASA** si una pieza piloto completa pasa el checklist anti-strike (Átomo 0.2) sin advertencias."
+          }
+        ]
+      },
+      {
+        "id": "fase-5",
+        "code": "Fase 5",
+        "title": "Tracción Rápida, Monitoreo y Desbloqueo de Monetización",
+        "atoms": [
+          {
+            "id": "atomo-5.1",
+            "code": "Átomo 5.1",
+            "title": "Sprint de Validación de 14 Días (Tendencia Piloto)",
+            "status": "pending",
+            "action": "Publicar de forma disciplinada sobre la tendencia activa dominante (ej. *La Mansión VIP 2* mientras siga en auge), alternando los 5 ángulos (Resumen 24h, Meme, Crítica, Noticia formal, Meta-reacción) y midiendo diariamente qué formato trae más **seguidores nuevos + compartidos**.",
+            "deliverable": "14 días de registros en `03-analisis-y-estadisticas/informes/` y `05-bitacora-y-errores/bitacora/`.",
+            "criteria": "**PASA** si se identifica estadísticamente el Top 2 de formatos con mayor tasa de compartidos y retención 3s > umbral definido en el Átomo 0.3."
+          },
+          {
+            "id": "atomo-5.2",
+            "code": "Átomo 5.2",
+            "title": "Auditoría de Elegibilidad y Activación de Monetización",
+            "status": "pending",
+            "action": "Monitorear progreso hacia los requisitos reales de monetización de Meta (verificados en el Átomo 0.1), asegurar 0 infracciones de originalidad, y enviar solicitud / activar herramientas de monetización en cuanto se cumplan los umbrales.",
+            "deliverable": "Reporte de auditoría en `03-analisis-y-estadisticas/auditorias-criticas/`.",
+            "criteria": "**PASA** cuando al menos 1 vía de monetización oficial está activa y generando ingresos verificables."
+          }
+        ]
+      },
+      {
+        "id": "fase-6",
+        "code": "Fase 6",
+        "title": "Pivoteo Secuencial y Escalado a $50K MXN/mes",
+        "atoms": [
+          {
+            "id": "atomo-6.1",
+            "code": "Átomo 6.1",
+            "title": "Protocolo de Detección de Agotamiento y Pivoteo Limpio",
+            "status": "pending",
+            "action": "Definir la métrica gatillo para abandonar una tendencia (ej. caída >40% en búsquedas/alcance de la tendencia durante 3 días consecutivos mientras emerge otra tendencia en `trend-radar`) y ejecutar la transición hacia la nueva ola sin mezclar 5 temas a la vez.",
+            "deliverable": "`00-sistema-y-reglas/sops-y-checklists/2026-11-16_sop-pivoteo-tendencias.md`.",
+            "criteria": "**PASA** si existen criterios cuantitativos claros de entrada, pico y salida de una tendencia."
+          },
+          {
+            "id": "atomo-6.2",
+            "code": "Átomo 6.2",
+            "title": "Optimización de RPM y Escalado Financiero ($50K MXN/mes)",
+            "status": "pending",
+            "action": "Una vez monetizada la página, optimizar la mezcla de formatos hacia los que pagan mayor RPM (ej. videos >1 min / >3 min para resúmenes profundos de 24h + Reels virales como embudo de alcance + imágenes/memes para retención de comunidad) hasta alcanzar la meta de $\\$50,000\\text{ MXN/mes}$.",
+            "deliverable": "Tablero de seguimiento financiero mensual en `03-analisis-y-estadisticas/informes/`.",
+            "criteria": "**PASA** cuando los ingresos acumulados de 30 días en Meta Business Suite alcancen $\\ge \\$50,000\\text{ MXN}$."
+          }
+        ]
+      }
+    ],
+    "totalAtoms": 18,
+    "completedAtoms": 0,
+    "inProgressAtoms": 0
+  },
+  "skills": [
+    {
+      "name": "analisis-critico",
+      "description": "MANDATORY and SUPREME analytical skill for evaluating, auditing, diagnosing, comparing, or judging ANY topic, situation, proposal, code, strategy, business, claim, or artifact — whether tiny and quick or deep and exhaustive. Enforces the 8 Pillars of Radical Objectivity (falsification, primary data, ACH rival hypotheses, base rates & calibrated probability, inversion/premortem, linguistic hygiene, incentive/skin-in-the-game audit, and error accountability) to eliminate personal taste, tribal bias, and sycophancy. Takes precedence over all other analytical or critique skills, which may only supply domain data without contaminating the final verdict.",
+      "path": ".agents/skills/analisis-critico/SKILL.md"
+    },
+    {
+      "name": "deep-research",
+      "description": "Implacable, evidence-locked deep research protocol for MonetizaciónFacebook using Antigravity native tools (search_web, browser subagent, and self subagent offloading). Enforces AGENTS.md §0.1 (8 Research Pillars), strict Chain-of-Custody for every number and claim, anti-guru/anti-SEO filtering, active counter-evidence search, and README.md storage rules so zero facts or metrics are ever invented.",
+      "path": ".agents/skills/deep-research/SKILL.md"
+    },
+    {
+      "name": "ejecucion-atomica",
+      "description": "MANDATORY anti-crash and task-decomposition protocol for EVERY user request that contains multiple tasks, broad research, or bulk creations/writes (e.g. Notion courses, multi-module databases, multi-tool pipelines). Forces decomposing heavy prompts into isolated, sequential atomic steps—offloading heavy research to a `self` subagent + local files, capping write batch sizes, preventing parallel heavy MCP calls, avoiding Notion JSON/SQLite quoting traps, and verifying real completion so the agent never hits HTTP 400 INVALID_ARGUMENT or loops.",
+      "path": ".agents/skills/ejecucion-atomica/SKILL.md"
+    },
+    {
+      "name": "interprete-prompt",
+      "description": "MANDATORY pre-processing skill executed on EVERY user message before acting or orchestrating. Translates natural, colloquial, emotional, or fragmented human input into a high-precision internal structured prompt using empirically validated 2025-2026 prompting and context engineering techniques (XML delimiters, Context Engineering, minimalist goal/constraints specification, Evaluator-Optimizer binary rubrics, Prompt Chaining, and Tool Use delegation) while preserving 100% fidelity to the user's real intent and flagging risky premises.",
+      "path": ".agents/skills/interprete-prompt/SKILL.md"
+    },
+    {
+      "name": "maestro",
+      "description": "Habilidad MAESTRA y orquestadora de MonetizaciónFacebook. OBLIGATORIA en CADA mensaje, chat nuevo, tarea, peticion, regla, requisito o indicacion del usuario, sin excepcion y sin importar si es trivial o profunda. Analiza la intencion, descubre dinamicamente que habilidades estan instaladas (workspace, plugins, builtin) y decide cual o cuales combinar, en que orden y con que nivel de profundidad, antes de ejecutar cualquier otra cosa.",
+      "path": ".agents/skills/maestro/SKILL.md"
+    }
+  ],
+  "docs": {
+    "reglas": [
+      {
+        "name": "2026-11-16_contexto-maestro-proyecto.md",
+        "path": "00-sistema-y-reglas/sops-y-checklists/2026-11-16_contexto-maestro-proyecto.md",
+        "title": "Contexto Maestro del Proyecto — `MonetizaciónFacebook`",
+        "updatedAt": "2026-11-17T04:30:34.906Z",
+        "sizeBytes": 5486
+      },
+      {
+        "name": "plantilla-pieza-contenido.md",
+        "path": "00-sistema-y-reglas/plantillas/plantilla-pieza-contenido.md",
+        "title": "Pieza: [YYYY-MM-DD] [Página] — [Título / Tema]",
+        "updatedAt": "2026-11-17T03:34:29.791Z",
+        "sizeBytes": 540
+      },
+      {
+        "name": "plantilla-error.md",
+        "path": "00-sistema-y-reglas/plantillas/plantilla-error.md",
+        "title": "YYYY-MM-DD — [Nombre corto del error o bloqueo]",
+        "updatedAt": "2026-11-17T03:34:28.780Z",
+        "sizeBytes": 318
+      },
+      {
+        "name": "plantilla-bitacora.md",
+        "path": "00-sistema-y-reglas/plantillas/plantilla-bitacora.md",
+        "title": "YYYY-MM-DD — [Título del hito o experimento]",
+        "updatedAt": "2026-11-17T03:34:27.675Z",
+        "sizeBytes": 201
+      }
+    ],
+    "estrategia": [
+      {
+        "name": "2026-11-16_plan-atomico-configuracion-y-operacion.md",
+        "path": "01-estrategia-y-nichos/estrategias/2026-11-16_plan-atomico-configuracion-y-operacion.md",
+        "title": "Plan Maestro Atómico: Configuración, Operación y Escalado a $50K MXN/mes (`MonetizaciónFacebook`)",
+        "updatedAt": "2026-11-17T04:31:18.708Z",
+        "sizeBytes": 21704
+      }
+    ],
+    "investigacion": [
+      {
+        "name": "2026-11-16_tecnicas-prompting-avanzadas.md",
+        "path": "02-investigacion/profunda/2026-11-16_tecnicas-prompting-avanzadas.md",
+        "title": "Investigación Profunda: Técnicas de Prompting Más Avanzadas y Efectivas (2025–2026)",
+        "updatedAt": "2026-11-17T03:43:01.133Z",
+        "sizeBytes": 32169
+      }
+    ],
+    "analisis": [],
+    "contenido": [],
+    "bitacora": []
+  },
+  "counts": {
+    "skills": 5,
+    "totalDocs": 6,
+    "investigations": 1,
+    "audits": 0,
+    "logs": 0
+  }
+}

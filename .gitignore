@@ -1,0 +1,14 @@
+# Dependencies & Build
+node_modules/
+.next/
+out/
+
+# Environment & Secrets
+.env
+.env*.local
+*.pem
+
+# Logs & OS
+*.log
+.DS_Store
+Thumbs.db

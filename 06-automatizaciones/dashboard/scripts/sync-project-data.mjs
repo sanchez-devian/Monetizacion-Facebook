@@ -1,0 +1,242 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const dashboardRoot = path.resolve(__dirname, '..');
+const repoRoot = path.resolve(dashboardRoot, '..', '..');
+const outputPath = path.join(dashboardRoot, 'src', 'data', 'project-state.json');
+
+function existsSafe(p) {
+  try {
+    return fs.existsSync(p);
+  } catch {
+    return false;
+  }
+}
+
+function listMarkdownFiles(relDir) {
+  const fullDir = path.join(repoRoot, relDir);
+  if (!existsSafe(fullDir)) return [];
+  const results = [];
+  function walk(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(full);
+      } else if (entry.isFile() && entry.name.endsWith('.md')) {
+        const stat = fs.statSync(full);
+        const rel = path.relative(repoRoot, full).replace(/\\/g, '/');
+        const content = fs.readFileSync(full, 'utf8');
+        const titleMatch = content.match(/^#\s+(.+)$/m);
+        results.push({
+          name: entry.name,
+          path: rel,
+          title: titleMatch ? titleMatch[1].trim() : entry.name.replace(/\.md$/, ''),
+          updatedAt: stat.mtime.toISOString(),
+          sizeBytes: stat.size,
+        });
+      }
+    }
+  }
+  walk(fullDir);
+  return results.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
+}
+
+function listSkills() {
+  const skillsDir = path.join(repoRoot, '.agents', 'skills');
+  if (!existsSafe(skillsDir)) return [];
+  const skills = [];
+  for (const entry of fs.readdirSync(skillsDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const skillMd = path.join(skillsDir, entry.name, 'SKILL.md');
+    if (!existsSafe(skillMd)) continue;
+    const raw = fs.readFileSync(skillMd, 'utf8');
+    const descMatch = raw.match(/description:\s*>?-?\s*([\s\S]*?)(?=\n[a-zA-Z_-]+:|\n---)/);
+    const description = descMatch
+      ? descMatch[1].replace(/\s+/g, ' ').trim()
+      : 'Habilidad del proyecto';
+    skills.push({
+      name: entry.name,
+      description,
+      path: `.agents/skills/${entry.name}/SKILL.md`,
+    });
+  }
+  return skills.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function parseAtomicPlan(existingAtomsMap = {}) {
+  const planPath = path.join(
+    repoRoot,
+    '01-estrategia-y-nichos',
+    'estrategias',
+    '2026-11-16_plan-atomico-configuracion-y-operacion.md'
+  );
+  if (!existsSafe(planPath)) return { phases: [], totalAtoms: 0, completedAtoms: 0 };
+
+  const md = fs.readFileSync(planPath, 'utf8');
+  const lines = md.split(/\r?\n/);
+  const phases = [];
+  let currentPhase = null;
+  let currentAtom = null;
+
+  for (const line of lines) {
+    const phaseMatch = line.match(/^##\s+(Fase\s+\d+)\s+[—-]\s+(.+)$/);
+    if (phaseMatch) {
+      currentAtom = null;
+      currentPhase = {
+        id: phaseMatch[1].toLowerCase().replace(/\s+/g, '-'),
+        code: phaseMatch[1],
+        title: phaseMatch[2].trim(),
+        atoms: [],
+      };
+      phases.push(currentPhase);
+      continue;
+    }
+
+    const atomMatch = line.match(/^###\s+(Átomo\s+\d+\.\d+)\s+[—-]\s+(.+)$/);
+    if (atomMatch && currentPhase) {
+      const id = atomMatch[1].toLowerCase().replace(/[á]/g, 'a').replace(/\s+/g, '-');
+      const prev = existingAtomsMap[id];
+      currentAtom = {
+        id,
+        code: atomMatch[1],
+        title: atomMatch[2].trim(),
+        status: prev?.status || 'pending', // 'completed' | 'in_progress' | 'pending'
+        action: '',
+        deliverable: '',
+        criteria: '',
+      };
+      currentPhase.atoms.push(currentAtom);
+      continue;
+    }
+
+    if (currentAtom) {
+      if (line.startsWith('- **Acción:**')) {
+        currentAtom.action = line.replace('- **Acción:**', '').trim();
+      } else if (line.startsWith('- **Entregable:**')) {
+        currentAtom.deliverable = line.replace('- **Entregable:**', '').trim();
+      } else if (line.startsWith('- **Criterio de terminado:**')) {
+        currentAtom.criteria = line.replace('- **Criterio de terminado:**', '').trim();
+      }
+    }
+  }
+
+  // Mark deliverable existence automatically if a concrete file path is mentioned and exists
+  for (const phase of phases) {
+    for (const atom of phase.atoms) {
+      const pathMatches = atom.deliverable.match(/`([^`]+\.(md|py|ps1))`/g);
+      if (pathMatches && atom.status === 'pending') {
+        const allExist = pathMatches.every((m) => {
+          const rel = m.replace(/`/g, '');
+          return existsSafe(path.join(repoRoot, rel));
+        });
+        if (allExist && pathMatches.length > 0) {
+          atom.status = 'completed';
+        }
+      }
+    }
+  }
+
+  const allAtoms = phases.flatMap((p) => p.atoms);
+  return {
+    phases,
+    totalAtoms: allAtoms.length,
+    completedAtoms: allAtoms.filter((a) => a.status === 'completed').length,
+    inProgressAtoms: allAtoms.filter((a) => a.status === 'in_progress').length,
+  };
+}
+
+function main() {
+  // Only sync if running inside the full MonetizaciónFacebook repo
+  if (!existsSafe(path.join(repoRoot, 'AGENTS.md'))) {
+    console.log('[sync] Repo root not found (likely running in isolated build). Keeping existing project-state.json.');
+    return;
+  }
+
+  let existing = {};
+  if (existsSafe(outputPath)) {
+    try {
+      existing = JSON.parse(fs.readFileSync(outputPath, 'utf8'));
+    } catch {
+      existing = {};
+    }
+  }
+
+  const existingAtomsMap = {};
+  for (const p of existing?.plan?.phases || []) {
+    for (const a of p.atoms || []) {
+      existingAtomsMap[a.id] = a;
+    }
+  }
+
+  const plan = parseAtomicPlan(existingAtomsMap);
+  const skills = listSkills();
+  const docs = {
+    reglas: listMarkdownFiles('00-sistema-y-reglas'),
+    estrategia: listMarkdownFiles('01-estrategia-y-nichos'),
+    investigacion: listMarkdownFiles('02-investigacion'),
+    analisis: listMarkdownFiles('03-analisis-y-estadisticas'),
+    contenido: listMarkdownFiles('04-contenido'),
+    bitacora: listMarkdownFiles('05-bitacora-y-errores'),
+  };
+
+  const state = {
+    projectName: 'MonetizaciónFacebook',
+    syncedAt: new Date().toISOString(),
+    goalMxnMonthly: 50000,
+    currentStatus: existing.currentStatus || {
+      activePhase: 'Preparación de Infraestructura & Cimientos',
+      workingOn: 'Despliegue de Dashboard PWA + Auth0 y preparación para Átomo 0.1',
+      nextStep: 'Ejecutar Átomo 0.1: Investigación profunda de RPM real y casos >= $50K MXN/mes',
+      policyHealth: 'Limpio (Pre-lanzamiento)',
+      activeTrend: 'La Mansión VIP 2 (Tendencia piloto definida)',
+    },
+    kpis: existing.kpis || {
+      monthlyRevenueMxn: 0,
+      monthlyViews: 0,
+      avgRpmMxn: 0,
+      followers: 0,
+      postsPublished: 0,
+      retention3sAvgPct: 0,
+      policyStrikes: 0,
+      dataSource: 'Pre-lanzamiento (pendiente conexión Meta Insights / CSV en Átomo 3.1)',
+    },
+    recentUpdates: existing.recentUpdates || [
+      {
+        date: '2026-11-17',
+        title: 'Dashboard PWA + Auth0 + Repositorio GitHub/Vercel',
+        summary: 'Creación del panel web responsive con tema claro/oscuro, PWA móvil y sincronización dinámica con archivos locales.',
+        type: 'infra',
+      },
+      {
+        date: '2026-11-16',
+        title: 'Blindaje de Skill deep-research',
+        summary: 'Se eliminaron dependencias rotas (firecrawl/exa) y se añadieron Cadena de Custodia del Dato, filtro anti-vendehúmos y búsqueda de contra-evidencia.',
+        type: 'skill',
+      },
+      {
+        date: '2026-11-16',
+        title: 'Contexto Maestro y Plan Atómico Auditado',
+        summary: 'Se documentó la visión completa (50K MXN/mes, trend-jacking 360°) y el plan de 7 fases / 14 átomos auditado con analisis-critico.',
+        type: 'plan',
+      },
+    ],
+    plan,
+    skills,
+    docs,
+    counts: {
+      skills: skills.length,
+      totalDocs: Object.values(docs).reduce((acc, list) => acc + list.length, 0),
+      investigations: docs.investigacion.length,
+      audits: docs.analisis.length,
+      logs: docs.bitacora.length,
+    },
+  };
+
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+  fs.writeFileSync(outputPath, JSON.stringify(state, null, 2), 'utf8');
+  console.log(`[sync] Updated ${outputPath} (${plan.totalAtoms} atoms, ${skills.length} skills, ${state.counts.totalDocs} docs).`);
+}
+
+main();
