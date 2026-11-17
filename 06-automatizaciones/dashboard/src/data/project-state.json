@@ -1,13 +1,13 @@
 {
   "projectName": "MonetizaciónFacebook",
-  "syncedAt": "2026-11-17T07:20:17.838Z",
+  "syncedAt": "2026-11-17T14:18:16.257Z",
   "goalMxnMonthly": 50000,
   "currentStatus": {
-    "activePhase": "Preparación de Infraestructura & Cimientos",
-    "workingOn": "Despliegue de Dashboard PWA + Auth0 y preparación para Átomo 0.1",
-    "nextStep": "Ejecutar Átomo 0.1: Investigación profunda de RPM real y casos >= $50K MXN/mes",
-    "policyHealth": "Limpio (Pre-lanzamiento)",
-    "activeTrend": "La Mansión VIP 2 (Tendencia piloto definida)"
+    "activePhase": "Fase 1 Completada → Listo para Fase 2",
+    "workingOn": "Ecosistema de skills, binarios (Python 3.12, FFmpeg, yt-dlp) y radar listos y probados",
+    "nextStep": "Ejecutar Fase 2 (Átomo 2.1): Arquitectura de Marca Adaptable para la Página de Facebook",
+    "policyHealth": "Limpio (Pre-lanzamiento · politicas-meta-guard activo)",
+    "activeTrend": "La Mansión VIP 2 (Validada en tiempo real por radar_tendencias.py)"
   },
   "kpis": {
     "monthlyRevenueMxn": 0,
@@ -20,6 +20,18 @@
     "dataSource": "Pre-lanzamiento (pendiente conexión Meta Insights / CSV en Átomo 3.1)"
   },
   "recentUpdates": [
+    {
+      "date": "2026-11-17",
+      "title": "Fase 1 Completada (Binarios, Scripts y 4 Skills Nuevas)",
+      "summary": "Instalados Python 3.12.10, FFmpeg 9.0.1 y yt-dlp 2026.10.26; creados descargar_insumo.py, transformar_clip.py y radar_tendencias.py (probados en vivo); añadidas skills trend-radar, viral-content-factory, politicas-meta-guard y meta-insights-analyst.",
+      "type": "infra"
+    },
+    {
+      "date": "2026-11-17",
+      "title": "Fase 0 Completada, Auditada y Documentada",
+      "summary": "Investigación verificada de FCM/RPM ($50K MXN/mes), 5 operadores reales en México, Biblia de Políticas Meta + Checklist 10/10, decodificación del algoritmo y auditoría crítica (PASA 3/3).",
+      "type": "plan"
+    },
     {
       "date": "2026-11-17",
       "title": "Dashboard PWA + Auth0 + Repositorio GitHub/Vercel",
@@ -50,7 +62,7 @@
             "id": "atomo-0.1",
             "code": "Átomo 0.1",
             "title": "Investigación Profunda de Ingeniería Inversa ($50K+ MXN/mes)",
-            "status": "pending",
+            "status": "completed",
             "action": "Ejecutar `deep-research` (con los 8 pilares de `AGENTS.md §0.1`) sobre creadores y páginas de entretenimiento/noticias virales en México y LATAM que ya generan $\\ge \\$50,000\\text{ MXN/mes}$ en Facebook.",
             "deliverable": "`02-investigacion/profunda/2026-11-16_ingenieria-inversa-50k-mxn-facebook.md` + `02-investigacion/competencia/2026-11-16_benchmark-paginas-tendencias-latam.md`.",
             "criteria": "**PASA** si todas las cifras citan fuente verificable (documentación oficial Meta, creadores auditables, reportes) y se incluye tabla de sensibilidad Vistas × RPM = MXN."
@@ -59,7 +71,7 @@
             "id": "atomo-0.2",
             "code": "Átomo 0.2",
             "title": "Biblia Operativa de Políticas Meta y Originalidad (Anti-Ban)",
-            "status": "pending",
+            "status": "completed",
             "action": "Recopilar y traducir a reglas binarias las **Políticas de Monetización para Socios**, **Políticas de Monetización de Contenido**, reglas de **Contenido No Original / Reutilizado**, **Engagement Bait** y **Copyright (Rights Manager)** de Meta.",
             "deliverable": "`00-sistema-y-reglas/politicas-meta/2026-11-16_reglas-oro-originalidad-y-monetizacion.md` + `00-sistema-y-reglas/sops-y-checklists/2026-11-16_checklist-pre-publicacion-anti-strike.md`.",
             "criteria": "**PASA** si existe un checklist de 10 puntos binarios (`SÍ/NO`) que toda pieza de terceros debe aprobar antes de publicarse (transformación visual, voz/narración propia, contexto añadido, música libre de copyright, cero marcas de agua de TikTok/IG/YouTube)."
@@ -68,7 +80,7 @@
             "id": "atomo-0.3",
             "code": "Átomo 0.3",
             "title": "Decodificación del Algoritmo Actual de Facebook",
-            "status": "pending",
+            "status": "completed",
             "action": "Investigar señales reales de distribución orgánica de Facebook (retención en los primeros 3 segundos, tasa de finalización, re-visualizaciones, compartidos por DM/muro, comentarios largos vs. *clickbait* penalizado, distribución en feed *For You* / *Suggested for You*).",
             "deliverable": "`02-investigacion/tendencias/2026-11-16_mecanica-algoritmo-facebook.md`.",
             "criteria": "**PASA** si separa hechos documentados por Meta/ingeniería de mitos sin respaldo, y define métricas objetivo por formato (Reels, Video largo, Meme/Imagen)."
@@ -84,7 +96,7 @@
             "id": "atomo-1.1",
             "code": "Átomo 1.1",
             "title": "Auditoría de Capacidades Actuales vs. Faltantes",
-            "status": "pending",
+            "status": "completed",
             "action": "",
             "deliverable": "Este mapa verificado + verificación de dependencias locales (`python`, `node`, `ffmpeg`, `yt-dlp`).",
             "criteria": "**PASA** si se comprueba en terminal qué binarios (`ffmpeg`, `yt-dlp`, `python`) están instalados o se instalan limpiamente."
@@ -93,7 +105,7 @@
             "id": "atomo-1.2",
             "code": "Átomo 1.2",
             "title": "Instalación de Binarios Locales de Media (`yt-dlp` + `ffmpeg`)",
-            "status": "pending",
+            "status": "completed",
             "action": "Instalar o verificar `yt-dlp` (descarga limpia de clips de YouTube/TikTok/X/Facebook sin marca de agua cuando aplique) y `ffmpeg` (corte automático, reencuadre 9:16 / 4:5 / 16:9, *mirror/zoom* dinámico, inserción de subtítulos y capas visuales transformativas).",
             "deliverable": "Scripts en `06-automatizaciones/scripts/` (`descargar_insumo.ps1` / `.py` y `transformar_clip.py`).",
             "criteria": "**PASA** si una prueba real descarga un clip público de prueba y genera una versión reencuadrada con marca/marco propio del proyecto sin errores."
@@ -102,7 +114,7 @@
             "id": "atomo-1.3",
             "code": "Átomo 1.3",
             "title": "Creación de Skill `trend-radar` (\"Ojos en Redes Sociales\")",
-            "status": "pending",
+            "status": "completed",
             "action": "Crear `.agents/skills/trend-radar/SKILL.md` combinando `browser` (para inspeccionar en vivo TikTok, X/Twitter, YouTube y Facebook público), `search_web` y scripts de monitoreo (Google Trends / RSS de noticias de entretenimiento en México).",
             "deliverable": "`.agents/skills/trend-radar/SKILL.md` + `06-automatizaciones/scripts/radar_tendencias.py`.",
             "criteria": "**PASA** si al ejecutar el flujo sobre una tendencia real (ej. *\"La Mansión VIP 2\"*) devuelve en <5 min: los 5 sucesos más comentados de las últimas 24h, ángulos virales activos y el nivel de saturación/vida útil de la tendencia."
@@ -111,7 +123,7 @@
             "id": "atomo-1.4",
             "code": "Átomo 1.4",
             "title": "Creación de Skill `viral-content-factory`",
-            "status": "pending",
+            "status": "completed",
             "action": "Crear `.agents/skills/viral-content-factory/SKILL.md` especializada en los 5 ángulos del proyecto:",
             "deliverable": "`.agents/skills/viral-content-factory/SKILL.md` + plantillas de hooks y prompts en `04-contenido/recursos-compartidos/prompts/`.",
             "criteria": "**PASA** si genera una matriz completa de 5 piezas distintas para un mismo suceso en <3 minutos cumpliendo el checklist anti-strike."
@@ -120,7 +132,7 @@
             "id": "atomo-1.5",
             "code": "Átomo 1.5",
             "title": "Creación de Skill `meta-insights-analyst` y `politicas-meta-guard`",
-            "status": "pending",
+            "status": "completed",
             "action": "Crear dos skills ligeras y enfocadas en `.agents/skills/`:",
             "deliverable": "`.agents/skills/politicas-meta-guard/SKILL.md` y `.agents/skills/meta-insights-analyst/SKILL.md`.",
             "criteria": "**PASA** si `inventario.ps1` lista todas las skills nuevas sin errores de formato."
@@ -254,7 +266,7 @@
       }
     ],
     "totalAtoms": 18,
-    "completedAtoms": 0,
+    "completedAtoms": 8,
     "inProgressAtoms": 0
   },
   "skills": [
@@ -282,10 +294,44 @@
       "name": "maestro",
       "description": "Habilidad MAESTRA y orquestadora de MonetizaciónFacebook. OBLIGATORIA en CADA mensaje, chat nuevo, tarea, peticion, regla, requisito o indicacion del usuario, sin excepcion y sin importar si es trivial o profunda. Analiza la intencion, descubre dinamicamente que habilidades estan instaladas (workspace, plugins, builtin) y decide cual o cuales combinar, en que orden y con que nivel de profundidad, antes de ejecutar cualquier otra cosa.",
       "path": ".agents/skills/maestro/SKILL.md"
+    },
+    {
+      "name": "meta-insights-analyst",
+      "description": "Facebook performance and monetization analyst for MonetizaciónFacebook. Processes raw Meta Business Suite CSV/JSON exports or Graph API metrics, computes 3s hook retention, shares per 1k views, and estimated RPM, and feeds objective diagnostics to analisis-critico without inventing data.",
+      "path": ".agents/skills/meta-insights-analyst/SKILL.md"
+    },
+    {
+      "name": "politicas-meta-guard",
+      "description": "Binary compliance gatekeeper for MonetizaciónFacebook. Audits every script, caption, image, or transformed video against the 10-point Anti-Strike checklist (Atom 0.2) and Meta's Partner/Content Monetization Policies before publishing.",
+      "path": ".agents/skills/politicas-meta-guard/SKILL.md"
+    },
+    {
+      "name": "trend-radar",
+      "description": "Social listening and trend-detection radar for MonetizaciónFacebook (\"ojos en redes\"). Combines radar_tendencias.py (Google Trends MX + Google News MX RSS), search_web, and the browser subagent to detect breaking viral events, active angles, and trend saturation in <5 minutes before producing content.",
+      "path": ".agents/skills/trend-radar/SKILL.md"
+    },
+    {
+      "name": "viral-content-factory",
+      "description": "Specialized viral content production skill for MonetizaciónFacebook (Trend-Jacking 360°). Generates 5 distinct, Meta-compliant content angles from any trending event (24h Recap, Quick Meme, Safe Polarizing Critique, Formal Pop-Culture News, and Meta-Reaction) optimized for 3s retention, DM sends, and zero Unoriginal Content strikes.",
+      "path": ".agents/skills/viral-content-factory/SKILL.md"
     }
   ],
   "docs": {
     "reglas": [
+      {
+        "name": "2026-11-17_checklist-pre-publicacion-anti-strike.md",
+        "path": "00-sistema-y-reglas/sops-y-checklists/2026-11-17_checklist-pre-publicacion-anti-strike.md",
+        "title": "Checklist Pre-Publicación Anti-Strike (10 Puntos Binarios)",
+        "updatedAt": "2026-11-17T13:42:19.198Z",
+        "sizeBytes": 3807
+      },
+      {
+        "name": "2026-11-17_reglas-oro-originalidad-y-monetizacion.md",
+        "path": "00-sistema-y-reglas/politicas-meta/2026-11-17_reglas-oro-originalidad-y-monetizacion.md",
+        "title": "Biblia Operativa de Políticas Meta y Originalidad (Anti-Ban)",
+        "updatedAt": "2026-11-17T13:42:18.013Z",
+        "sizeBytes": 11324
+      },
       {
         "name": "2026-11-16_contexto-maestro-proyecto.md",
         "path": "00-sistema-y-reglas/sops-y-checklists/2026-11-16_contexto-maestro-proyecto.md",
@@ -326,6 +372,27 @@
     ],
     "investigacion": [
       {
+        "name": "2026-11-17_mecanica-algoritmo-facebook.md",
+        "path": "02-investigacion/tendencias/2026-11-17_mecanica-algoritmo-facebook.md",
+        "title": "Decodificación del Algoritmo Actual de Facebook (2025–2026): Informe de Investigación Verificada",
+        "updatedAt": "2026-11-17T13:47:58.294Z",
+        "sizeBytes": 16651
+      },
+      {
+        "name": "2026-11-17_benchmark-paginas-tendencias-latam.md",
+        "path": "02-investigacion/competencia/2026-11-17_benchmark-paginas-tendencias-latam.md",
+        "title": "Benchmark de Páginas y Operadores Reales en México/LATAM (Entretenimiento, Cultura Pop, Noticias Virales y Humor)",
+        "updatedAt": "2026-11-17T13:37:44.079Z",
+        "sizeBytes": 8956
+      },
+      {
+        "name": "2026-11-17_ingenieria-inversa-50k-mxn-facebook.md",
+        "path": "02-investigacion/profunda/2026-11-17_ingenieria-inversa-50k-mxn-facebook.md",
+        "title": "Ingeniería Inversa ($50,000+ MXN/mes) en Facebook Content Monetization: Informe de Investigación Verificada",
+        "updatedAt": "2026-11-17T13:37:42.763Z",
+        "sizeBytes": 12108
+      },
+      {
         "name": "2026-11-16_tecnicas-prompting-avanzadas.md",
         "path": "02-investigacion/profunda/2026-11-16_tecnicas-prompting-avanzadas.md",
         "title": "Investigación Profunda: Técnicas de Prompting Más Avanzadas y Efectivas (2025–2026)",
@@ -333,15 +400,31 @@
         "sizeBytes": 32169
       }
     ],
-    "analisis": [],
-    "contenido": [],
+    "analisis": [
+      {
+        "name": "2026-11-17_auditoria-fase-0.md",
+        "path": "03-analisis-y-estadisticas/auditorias-criticas/2026-11-17_auditoria-fase-0.md",
+        "title": "Auditoría Crítica de la Fase 0 (`analisis-critico` — 8 Pilares)",
+        "updatedAt": "2026-11-17T13:49:07.972Z",
+        "sizeBytes": 8046
+      }
+    ],
+    "contenido": [
+      {
+        "name": "2026-11-17_plantillas-hooks-y-angulos.md",
+        "path": "04-contenido/recursos-compartidos/prompts/2026-11-17_plantillas-hooks-y-angulos.md",
+        "title": "Plantillas Maestras de Hooks, Guiones y Ángulos (*Trend-Jacking 360°*)",
+        "updatedAt": "2026-11-17T14:16:47.580Z",
+        "sizeBytes": 2239
+      }
+    ],
     "bitacora": []
   },
   "counts": {
-    "skills": 5,
-    "totalDocs": 6,
-    "investigations": 1,
-    "audits": 0,
+    "skills": 9,
+    "totalDocs": 13,
+    "investigations": 4,
+    "audits": 1,
     "logs": 0
   }
 }
