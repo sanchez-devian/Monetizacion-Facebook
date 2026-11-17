@@ -147,7 +147,7 @@ export function DashboardClient({
             </button>
             {authConfigured && (
               <a
-                href="/auth/logout"
+                href="/api/auth/logout"
                 title="Cerrar sesión"
                 className="p-2 rounded-xl border border-[var(--border)] hover:bg-red-500/10 hover:text-red-500 transition"
               >
@@ -178,7 +178,7 @@ export function DashboardClient({
             {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4" />}
           </button>
           {authConfigured && (
-            <a href="/auth/logout" aria-label="Cerrar sesión" className="p-2 rounded-xl bg-[var(--surface-muted)]">
+            <a href="/api/auth/logout" aria-label="Cerrar sesión" className="p-2 rounded-xl bg-[var(--surface-muted)]">
               <LogOut className="w-4 h-4" />
             </a>
           )}

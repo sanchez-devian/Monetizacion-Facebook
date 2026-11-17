@@ -1,28 +1,35 @@
-import { getAuth0Client, isAuth0Configured } from '@/lib/auth0';
+import { Suspense } from 'react';
+import { getSession } from '@/lib/session';
 import { getProjectState } from '@/lib/project';
 import { DashboardClient } from '@/components/DashboardClient';
 import { LoginGate } from '@/components/LoginGate';
 
-export default async function HomePage() {
-  const authConfigured = isAuth0Configured();
-  const auth0 = getAuth0Client();
-
-  if (authConfigured && auth0) {
-    const session = await auth0.getSession();
-    if (!session) {
-      return <LoginGate authConfigured={true} />;
-    }
-    const state = getProjectState();
-    return (
-      <DashboardClient
-        state={state}
-        user={{ name: session.user.name, email: session.user.email }}
-        authConfigured={true}
-      />
-    );
+async function AuthenticatedContent() {
+  const session = await getSession();
+  if (!session) {
+    return <LoginGate />;
   }
 
-  // Fallback when Auth0 env vars are not yet configured locally
   const state = getProjectState();
-  return <DashboardClient state={state} user={null} authConfigured={false} />;
+  return (
+    <DashboardClient
+      state={state}
+      user={{ name: session.name, email: session.email }}
+      authConfigured={true}
+    />
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-[var(--bg)] text-sm text-[var(--text-muted)]">
+          Cargando Centro de Mando...
+        </div>
+      }
+    >
+      <AuthenticatedContent />
+    </Suspense>
+  );
 }

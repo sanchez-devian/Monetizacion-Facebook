@@ -1,12 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getAuth0Client } from '@/lib/auth0';
+import { NextResponse } from 'next/server';
 
-export async function proxy(request: NextRequest) {
-  const auth0 = getAuth0Client();
-  if (!auth0) {
-    return NextResponse.next();
-  }
-  return await auth0.middleware(request);
+export function proxy() {
+  const response = NextResponse.next();
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  return response;
 }
 
 export const config = {
