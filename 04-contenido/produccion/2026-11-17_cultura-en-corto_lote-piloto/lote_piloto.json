@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "game-awards-2026-nominados",
+    "estilo": "noticia_pop",
+    "categoria": "GAMING Y CULTURA POP",
+    "titular": "The Game Awards 2026 revela nominados y enciende el debate por el Juego del Ano",
+    "bajada": "Los titulos independientes vuelven a competir frente a frente contra los gigantes de la industria."
+  },
+  {
+    "slug": "misterio-efectos-practicos-cine",
+    "estilo": "carrusel_misterio",
+    "laminas": [
+      "4 secretos detras de escenas clasicas del cine que se grabaron sin computadora",
+      "1. Muchas explosiones y maquetas clasicas se filmaban a 120 cuadros por segundo para dar sensacion de escala real.",
+      "2. Varias criaturas iconicas de los 80 y 90 usaban animatronicos controlados por hasta 6 titiriteros ocultos.",
+      "3. La ilusion optica con espejos y perspectiva forzada ahorraba millones antes de la era digital.",
+      "4. Cual es la escena con efectos practicos que todavia hoy te parece imposible de superar?"
+    ]
+  },
+  {
+    "slug": "festivales-cdmx-vs-streaming",
+    "estilo": "ranking_comparativa",
+    "categoria": "MUSICA Y TENDENCIAS",
+    "titular": "Corona Capital y la era de los mega festivales: vale la pena el boleto en 2026?",
+    "lado_a_titulo": "IR EN VIVO",
+    "lado_a_texto": "Ambiente irrepetible, colaboraciones sorpresa y recuerdos para toda la vida, aunque el gasto total supera facil varios miles.",
+    "lado_b_titulo": "VERLO EN CASA",
+    "lado_b_texto": "Cero filas, mejor sonido en pantalla y cero desgaste fisico, pero sin la energia del publico."
+  },
+  {
+    "slug": "nostalgia-remakes-cine",
+    "estilo": "cita_viral",
+    "categoria": "CINE Y OPINION",
+    "titular": "El problema de Hollywood hoy no es falta de presupuesto.",
+    "destacado": "Es hacer remakes de peliculas que ya eran perfectas hace 20 anos en lugar de arriesgar con historias nuevas."
+  }
+]

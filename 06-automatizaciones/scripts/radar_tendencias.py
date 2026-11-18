@@ -31,9 +31,9 @@ def fetch_xml(url: str, timeout: int = 15) -> ET.Element:
     return ET.fromstring(data)
 
 
-def get_google_trends_mx(limit: int = 10) -> list[dict[str, str]]:
-    """Extrae las tendencias actuales de Google Trends Mexico (RSS oficial)."""
-    url = "https://trends.google.com/trending/rss?geo=MX"
+def get_google_trends(geo: str = "MX", limit: int = 10) -> list[dict[str, str]]:
+    """Extrae las tendencias actuales de Google Trends (RSS oficial) para el codigo de pais dado."""
+    url = f"https://trends.google.com/trending/rss?geo={urllib.parse.quote_plus(geo.upper())}"
     root = fetch_xml(url)
     ns = {"ht": "https://trends.google.com/trending/rss"}
     items = []
@@ -52,6 +52,7 @@ def get_google_trends_mx(limit: int = 10) -> list[dict[str, str]]:
             news_source = (news_item.findtext("ht:news_item_source", namespaces=ns) or "").strip()
         items.append(
             {
+                "geo": geo.upper(),
                 "tema": title,
                 "trafico_aprox": traffic or "N/D",
                 "publicado": pub_date,
@@ -100,21 +101,23 @@ def render_markdown(topic: str | None, trends: list[dict[str, str]], news: list[
         for i, n in enumerate(news, 1):
             lines.append(f"{i}. **{n['titular']}** — *{n['fuente']}* ({n['publicado']}) · [Fuente]({n['url']})")
 
-    lines.extend(["", "## 2. Top Tendencias Activas en México (Google Trends MX)"])
+    lines.extend(["", "## 2. Top Tendencias Activas (Google Trends)"])
     if not trends:
-        lines.append("- No se pudieron recuperar tendencias de Google Trends MX.")
+        lines.append("- No se pudieron recuperar tendencias de Google Trends.")
     else:
         for i, t in enumerate(trends, 1):
+            geo_tag = f"[{t.get('geo', 'MX')}] " if t.get("geo") else ""
             lines.append(
-                f"{i}. **{t['tema']}** ({t['trafico_aprox']}) — {t['titular_referencia']} (*{t['fuente']}*)"
+                f"{i}. {geo_tag}**{t['tema']}** ({t['trafico_aprox']}) — {t['titular_referencia']} (*{t['fuente']}*)"
             )
     return "\n".join(lines) + "\n"
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Radar de tendencias reales MX/LATAM.")
+    parser = argparse.ArgumentParser(description="Radar de tendencias reales MX/US-Bicultural.")
     parser.add_argument("--tema", default=None, help="Tema o tendencia especifica a monitorear")
-    parser.add_argument("--limit-trends", type=int, default=10, help="Numero de tendencias MX")
+    parser.add_argument("--geo", default="MX", help="Codigos de pais separados por coma (ej. MX,US)")
+    parser.add_argument("--limit-trends", type=int, default=10, help="Numero de tendencias por pais")
     parser.add_argument("--limit-news", type=int, default=8, help="Numero de noticias del tema")
     parser.add_argument("--out-md", default=None, help="Ruta opcional para guardar reporte .md")
     parser.add_argument("--json", action="store_true", help="Imprimir salida en JSON")
@@ -124,10 +127,11 @@ def main() -> int:
     news: list[dict[str, str]] = []
     errors: list[str] = []
 
-    try:
-        trends = get_google_trends_mx(limit=args.limit_trends)
-    except Exception as exc:
-        errors.append(f"Google Trends MX: {exc}")
+    for geo in [g.strip().upper() for g in args.geo.split(",") if g.strip()]:
+        try:
+            trends.extend(get_google_trends(geo=geo, limit=args.limit_trends))
+        except Exception as exc:
+            errors.append(f"Google Trends {geo}: {exc}")
 
     if args.tema:
         try:

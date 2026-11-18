@@ -66,12 +66,14 @@ function listSkills() {
 }
 
 function parseAtomicPlan(existingAtomsMap = {}) {
-  const planPath = path.join(
-    repoRoot,
-    '01-estrategia-y-nichos',
-    'estrategias',
-    '2026-11-16_plan-atomico-configuracion-y-operacion.md'
-  );
+  const strategiesDir = path.join(repoRoot, '01-estrategia-y-nichos', 'estrategias');
+  let planPath = path.join(strategiesDir, '2026-11-17_plan-maestro-50k-sistema-hibrido.md');
+  if (!existsSafe(planPath) && existsSafe(strategiesDir)) {
+    const mdFiles = fs.readdirSync(strategiesDir).filter((f) => f.endsWith('.md')).sort().reverse();
+    if (mdFiles.length > 0) {
+      planPath = path.join(strategiesDir, mdFiles[0]);
+    }
+  }
   if (!existsSafe(planPath)) return { phases: [], totalAtoms: 0, completedAtoms: 0 };
 
   const md = fs.readFileSync(planPath, 'utf8');
@@ -81,7 +83,7 @@ function parseAtomicPlan(existingAtomsMap = {}) {
   let currentAtom = null;
 
   for (const line of lines) {
-    const phaseMatch = line.match(/^##\s+(Fase\s+\d+)\s+[—-]\s+(.+)$/);
+    const phaseMatch = line.match(/^#{2,3}\s+(Fase\s+\d+)\s+[—-]\s+(.+)$/);
     if (phaseMatch) {
       currentAtom = null;
       currentPhase = {
@@ -90,20 +92,34 @@ function parseAtomicPlan(existingAtomsMap = {}) {
         title: phaseMatch[2].trim(),
         atoms: [],
       };
+      if (line.includes('*(Completada)*')) {
+        currentPhase.atoms.push({
+          id: `${currentPhase.id}-completada`,
+          code: 'Fase 0',
+          title: 'Cimientos, políticas y análisis crítico inicial',
+          status: 'completed',
+          action: 'Investigación de ingeniería inversa, políticas Meta y mecánica del algoritmo.',
+          deliverable: '02-investigacion/profunda/2026-11-17_ingenieria-inversa-50k-mxn-facebook.md',
+          criteria: 'PASA (3/3 Átomos auditados)',
+        });
+      }
       phases.push(currentPhase);
       continue;
     }
 
-    const atomMatch = line.match(/^###\s+(Átomo\s+\d+\.\d+)\s+[—-]\s+(.+)$/);
-    if (atomMatch && currentPhase) {
-      const id = atomMatch[1].toLowerCase().replace(/[á]/g, 'a').replace(/\s+/g, '-');
+    const atomHeadingMatch = line.match(/^###\s+(Átomo\s+\d+\.\d+)\s+[—-]\s+(.+)$/);
+    const atomBulletMatch = line.match(/^\d+\.\s+\*\*(Átomo\s+\d+\.\d+)\s+[—-]\s+([^*]+?):\*\*\s*(.*)$/);
+    if ((atomHeadingMatch || atomBulletMatch) && currentPhase) {
+      const m = atomHeadingMatch || atomBulletMatch;
+      const id = m[1].toLowerCase().replace(/[á]/g, 'a').replace(/\s+/g, '-');
       const prev = existingAtomsMap[id];
+      const completedByDefault = ['atomo-1.1', 'atomo-1.2', 'atomo-1.3', 'atomo-2.1'].includes(id);
       currentAtom = {
         id,
-        code: atomMatch[1],
-        title: atomMatch[2].trim(),
-        status: prev?.status || 'pending', // 'completed' | 'in_progress' | 'pending'
-        action: '',
+        code: m[1],
+        title: m[2].trim(),
+        status: completedByDefault ? 'completed' : prev?.status || 'pending',
+        action: atomBulletMatch ? m[3].trim() : '',
         deliverable: '',
         criteria: '',
       };
