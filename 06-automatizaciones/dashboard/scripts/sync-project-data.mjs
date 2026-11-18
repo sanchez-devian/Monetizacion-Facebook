@@ -197,16 +197,59 @@ function main() {
     bitacora: listMarkdownFiles('05-bitacora-y-errores'),
   };
 
+  // Sync production lotes (images -> public/lotes/<slug>/ + manifest -> project-state.json)
+  const lotes = [];
+  const prodDir = path.join(repoRoot, '04-contenido', 'produccion');
+  const publicLotesDir = path.join(dashboardRoot, 'public', 'lotes');
+  if (existsSafe(prodDir)) {
+    fs.mkdirSync(publicLotesDir, { recursive: true });
+    const entries = fs.readdirSync(prodDir, { withFileTypes: true }).filter((e) => e.isDirectory());
+    for (const entry of entries.sort((a, b) => b.name.localeCompare(a.name))) {
+      const manifestPath = path.join(prodDir, entry.name, 'lote_programacion.json');
+      if (!existsSafe(manifestPath)) continue;
+      try {
+        const rawPosts = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+        const destFolder = path.join(publicLotesDir, entry.name);
+        fs.mkdirSync(destFolder, { recursive: true });
+        const posts = rawPosts.map((p, idx) => {
+          const publicImgs = (p.imagenes || []).map((relImg) => {
+            const srcImg = path.join(prodDir, entry.name, relImg);
+            const fileName = path.basename(relImg);
+            const destImg = path.join(destFolder, fileName);
+            if (existsSafe(srcImg)) {
+              fs.copyFileSync(srcImg, destImg);
+            }
+            return `/lotes/${entry.name}/${fileName}`;
+          });
+          return {
+            index: idx + 1,
+            message: p.message || '',
+            imagenes: publicImgs,
+          };
+        });
+        lotes.push({
+          slug: entry.name,
+          title: entry.name.replace(/^\d{4}-\d{2}-\d{2}_/, '').replace(/[-_]/g, ' '),
+          date: entry.name.slice(0, 10),
+          postsCount: posts.length,
+          posts,
+        });
+      } catch (err) {
+        console.warn(`[sync] Error reading lote ${entry.name}:`, err.message);
+      }
+    }
+  }
+
   const state = {
     projectName: 'MonetizaciónFacebook',
     syncedAt: new Date().toISOString(),
     goalMxnMonthly: 50000,
-    currentStatus: existing.currentStatus || {
-      activePhase: 'Preparación de Infraestructura & Cimientos',
-      workingOn: 'Despliegue de Dashboard PWA + Auth0 y preparación para Átomo 0.1',
-      nextStep: 'Ejecutar Átomo 0.1: Investigación profunda de RPM real y casos >= $50K MXN/mes',
-      policyHealth: 'Limpio (Pre-lanzamiento)',
-      activeTrend: 'La Mansión VIP 2 (Tendencia piloto definida)',
+    currentStatus: {
+      activePhase: 'Fase 1–2: Fábrica Visual + Cultura En Corto',
+      workingOn: 'Plan Maestro v2 ($50K Híbrido) y Lote Piloto listo para programar',
+      nextStep: 'Programar los 4 posts del Lote Piloto y grabar el primer video Capa 2 (120–180s)',
+      policyHealth: 'Limpio (10/10 Anti-Strike)',
+      activeTrend: 'Cultura Pop, Misterios y Tendencias MX/US (The Game Awards, Corona Capital)',
     },
     kpis: existing.kpis || {
       monthlyRevenueMxn: 0,
@@ -218,26 +261,27 @@ function main() {
       policyStrikes: 0,
       dataSource: 'Pre-lanzamiento (pendiente conexión Meta Insights / CSV en Átomo 3.1)',
     },
-    recentUpdates: existing.recentUpdates || [
+    recentUpdates: [
+      {
+        date: '2026-11-17',
+        title: 'Plan Maestro v2 + Cultura En Corto + Lote Piloto',
+        summary: 'Pivote estratégico a sistema híbrido (imágenes 4:5 para alcance + video 120–180s para RPM) con vista previa integrada en la web.',
+        type: 'plan',
+      },
+      {
+        date: '2026-11-17',
+        title: 'Investigación Imágenes vs. Video en FCM 2025–2026',
+        summary: 'Validado que fotos pagan $0.01–$0.04 USD en LATAM; se usarán como embudo hacia video narrado y Branded Content.',
+        type: 'research',
+      },
       {
         date: '2026-11-17',
         title: 'Dashboard PWA + Auth0 + Repositorio GitHub/Vercel',
         summary: 'Creación del panel web responsive con tema claro/oscuro, PWA móvil y sincronización dinámica con archivos locales.',
         type: 'infra',
       },
-      {
-        date: '2026-11-16',
-        title: 'Blindaje de Skill deep-research',
-        summary: 'Se eliminaron dependencias rotas (firecrawl/exa) y se añadieron Cadena de Custodia del Dato, filtro anti-vendehúmos y búsqueda de contra-evidencia.',
-        type: 'skill',
-      },
-      {
-        date: '2026-11-16',
-        title: 'Contexto Maestro y Plan Atómico Auditado',
-        summary: 'Se documentó la visión completa (50K MXN/mes, trend-jacking 360°) y el plan de 7 fases / 14 átomos auditado con analisis-critico.',
-        type: 'plan',
-      },
     ],
+    lotes,
     plan,
     skills,
     docs,

@@ -1,13 +1,13 @@
 {
   "projectName": "MonetizaciónFacebook",
-  "syncedAt": "2026-11-18T02:11:27.945Z",
+  "syncedAt": "2026-11-18T02:54:34.386Z",
   "goalMxnMonthly": 50000,
   "currentStatus": {
-    "activePhase": "Fase 1 Completada → Listo para Fase 2",
-    "workingOn": "Ecosistema de skills, binarios (Python 3.12, FFmpeg, yt-dlp) y radar listos y probados",
-    "nextStep": "Ejecutar Fase 2 (Átomo 2.1): Arquitectura de Marca Adaptable para la Página de Facebook",
-    "policyHealth": "Limpio (Pre-lanzamiento · politicas-meta-guard activo)",
-    "activeTrend": "La Mansión VIP 2 (Validada en tiempo real por radar_tendencias.py)"
+    "activePhase": "Fase 1–2: Fábrica Visual + Cultura En Corto",
+    "workingOn": "Plan Maestro v2 ($50K Híbrido) y Lote Piloto listo para programar",
+    "nextStep": "Programar los 4 posts del Lote Piloto y grabar el primer video Capa 2 (120–180s)",
+    "policyHealth": "Limpio (10/10 Anti-Strike)",
+    "activeTrend": "Cultura Pop, Misterios y Tendencias MX/US (The Game Awards, Corona Capital)"
   },
   "kpis": {
     "monthlyRevenueMxn": 0,
@@ -22,33 +22,63 @@
   "recentUpdates": [
     {
       "date": "2026-11-17",
-      "title": "Fase 1 Completada (Binarios, Scripts y 4 Skills Nuevas)",
-      "summary": "Instalados Python 3.12.10, FFmpeg 9.0.1 y yt-dlp 2026.10.26; creados descargar_insumo.py, transformar_clip.py y radar_tendencias.py (probados en vivo); añadidas skills trend-radar, viral-content-factory, politicas-meta-guard y meta-insights-analyst.",
-      "type": "infra"
+      "title": "Plan Maestro v2 + Cultura En Corto + Lote Piloto",
+      "summary": "Pivote estratégico a sistema híbrido (imágenes 4:5 para alcance + video 120–180s para RPM) con vista previa integrada en la web.",
+      "type": "plan"
     },
     {
       "date": "2026-11-17",
-      "title": "Fase 0 Completada, Auditada y Documentada",
-      "summary": "Investigación verificada de FCM/RPM ($50K MXN/mes), 5 operadores reales en México, Biblia de Políticas Meta + Checklist 10/10, decodificación del algoritmo y auditoría crítica (PASA 3/3).",
-      "type": "plan"
+      "title": "Investigación Imágenes vs. Video en FCM 2025–2026",
+      "summary": "Validado que fotos pagan $0.01–$0.04 USD en LATAM; se usarán como embudo hacia video narrado y Branded Content.",
+      "type": "research"
     },
     {
       "date": "2026-11-17",
       "title": "Dashboard PWA + Auth0 + Repositorio GitHub/Vercel",
       "summary": "Creación del panel web responsive con tema claro/oscuro, PWA móvil y sincronización dinámica con archivos locales.",
       "type": "infra"
-    },
+    }
+  ],
+  "lotes": [
     {
-      "date": "2026-11-16",
-      "title": "Blindaje de Skill deep-research",
-      "summary": "Se eliminaron dependencias rotas (firecrawl/exa) y se añadieron Cadena de Custodia del Dato, filtro anti-vendehúmos y búsqueda de contra-evidencia.",
-      "type": "skill"
-    },
-    {
-      "date": "2026-11-16",
-      "title": "Contexto Maestro y Plan Atómico Auditado",
-      "summary": "Se documentó la visión completa (50K MXN/mes, trend-jacking 360°) y el plan de 7 fases / 14 átomos auditado con analisis-critico.",
-      "type": "plan"
+      "slug": "2026-11-17_cultura-en-corto_lote-piloto",
+      "title": "cultura en corto lote piloto",
+      "date": "2026-11-17",
+      "postsCount": 4,
+      "posts": [
+        {
+          "index": 1,
+          "message": "Hoy se revelan los nominados a The Game Awards 2026 y como cada año la conversación está dividida entre las mega producciones y los juegos independientes que se robaron la atención del público.\n\n¿Cuál título crees que merece llevarse el premio al Juego del Año esta edición y por qué?\n\n#TheGameAwards #Videojuegos #CulturaPop #Gaming #CulturaEnCorto",
+          "imagenes": [
+            "/lotes/2026-11-17_cultura-en-corto_lote-piloto/game-awards-2026-nominados_noticia.png"
+          ]
+        },
+        {
+          "index": 2,
+          "message": "Antes de que todo se resolviera con pantalla verde, los estudios tenían que inventar trucos físicos reales para engañar al ojo en la sala de cine. Desliza las imágenes para ver 4 técnicas que siguen sorprendiendo.\n\n¿Qué película antigua tiene efectos tan bien hechos que todavía hoy se ve más real que muchas producciones modernas?\n\n#CineClasico #CuriosidadesDeCine #EfectosPracticos #CulturaPop #CulturaEnCorto",
+          "imagenes": [
+            "/lotes/2026-11-17_cultura-en-corto_lote-piloto/misterio-efectos-practicos-cine_slide_01.png",
+            "/lotes/2026-11-17_cultura-en-corto_lote-piloto/misterio-efectos-practicos-cine_slide_02.png",
+            "/lotes/2026-11-17_cultura-en-corto_lote-piloto/misterio-efectos-practicos-cine_slide_03.png",
+            "/lotes/2026-11-17_cultura-en-corto_lote-piloto/misterio-efectos-practicos-cine_slide_04.png",
+            "/lotes/2026-11-17_cultura-en-corto_lote-piloto/misterio-efectos-practicos-cine_slide_05.png"
+          ]
+        },
+        {
+          "index": 3,
+          "message": "Con festivales como el Corona Capital dejando cifras récord en la ciudad y los precios de boletos subiendo cada temporada, el debate entre vivirlo en persona o disfrutarlo desde casa está más vivo que nunca.\n\nSi tuvieras el presupuesto justo este fin de semana, ¿lo invertirías en un festival completo o en un viaje corto?\n\n#CoronaCapital #Conciertos #MusicaEnVivo #CulturaEnCorto",
+          "imagenes": [
+            "/lotes/2026-11-17_cultura-en-corto_lote-piloto/festivales-cdmx-vs-streaming_comparativa.png"
+          ]
+        },
+        {
+          "index": 4,
+          "message": "Cada año anuncian tres remakes nuevos de clásicos que nadie pidió actualizar.\n\n¿Cuál es esa película que consideras intocable y que jamás deberían volver a grabar?\n\n#Cine #Remakes #Opinion #CulturaPop #CulturaEnCorto",
+          "imagenes": [
+            "/lotes/2026-11-17_cultura-en-corto_lote-piloto/nostalgia-remakes-cine_cita.png"
+          ]
+        }
+      ]
     }
   ],
   "plan": {

@@ -9,6 +9,7 @@ import {
   Circle,
   Clock,
   FolderGit2,
+  Layers,
   LayoutDashboard,
   ListChecks,
   LogOut,
@@ -23,9 +24,10 @@ import {
 } from 'lucide-react';
 import type { AtomStatus, ProjectState } from '@/lib/project';
 import { Fase0DocsSection } from './Fase0DocsSection';
+import { LotesPreviewSection } from './LotesPreviewSection';
 import { useTheme } from './ThemeProvider';
 
-type TabKey = 'overview' | 'fase0' | 'plan' | 'stats' | 'repo';
+type TabKey = 'overview' | 'lotes' | 'fase0' | 'plan' | 'stats' | 'repo';
 
 interface UserInfo {
   name?: string | null;
@@ -91,6 +93,7 @@ export function DashboardClient({
 
   const navItems: Array<{ key: TabKey; label: string; icon: React.ReactNode }> = [
     { key: 'overview', label: 'Resumen', icon: <LayoutDashboard className="w-5 h-5" /> },
+    { key: 'lotes', label: 'Lotes', icon: <Layers className="w-5 h-5" /> },
     { key: 'fase0', label: 'Fase 0 Docs', icon: <BookOpen className="w-5 h-5" /> },
     { key: 'plan', label: 'Plan Atómico', icon: <ListChecks className="w-5 h-5" /> },
     { key: 'stats', label: 'Estadísticas', icon: <BarChart3 className="w-5 h-5" /> },
@@ -379,6 +382,9 @@ export function DashboardClient({
               ))}
             </section>
           )}
+
+          {/* TAB: LOTES */}
+          {tab === 'lotes' && <LotesPreviewSection lotes={state.lotes || []} />}
 
           {tab === 'fase0' && <Fase0DocsSection />}
 

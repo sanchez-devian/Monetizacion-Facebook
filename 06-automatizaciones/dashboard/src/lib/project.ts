@@ -33,6 +33,20 @@ export interface ProjectSkill {
   path: string;
 }
 
+export interface LotePost {
+  index: number;
+  message: string;
+  imagenes: string[];
+}
+
+export interface ProjectLote {
+  slug: string;
+  title: string;
+  date: string;
+  postsCount: number;
+  posts: LotePost[];
+}
+
 export interface ProjectState {
   projectName: string;
   syncedAt: string;
@@ -60,6 +74,7 @@ export interface ProjectState {
     summary: string;
     type: string;
   }>;
+  lotes?: ProjectLote[];
   plan: {
     phases: PlanPhase[];
     totalAtoms: number;
